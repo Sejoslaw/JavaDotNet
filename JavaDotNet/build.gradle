@@ -1,0 +1,70 @@
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Date
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+group 'kd.jdn'
+archivesBaseName = "JavaDotNet"
+version = getVersionFromJava(file("src/main/java/kd/jdn/JavaDotNet.java"))
+
+String getVersionFromJava(File file) {
+
+    DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss")
+    Date date = new Date()
+    String buildDate = dateFormat.format(date)
+	
+    def outfile = "";
+    def ln = System.getProperty("line.separator")
+    
+    String prefix = "public static final String VERSION = \"";
+    file.eachLine { String s ->
+        String v = s.trim();
+        if(v.startsWith(prefix)) 
+        {
+            outfile += ("	" + prefix + buildDate + "\";" + ln);
+        }
+        else
+        {
+        	outfile += (s + ln);
+        }
+    }
+    file.write(outfile);
+    return buildDate;
+}
+
+if(JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+task buildJar(type: Jar) {
+    from sourceSets.main.output
+}
+
+artifacts {
+    archives buildJar
+    archives sourcesJar
+    archives javadocJar
+}
