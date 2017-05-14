@@ -1,3 +1,4 @@
+<pre>
 			..:: JavaDotNet Specification ::..
 
 1) General info.
@@ -20,3 +21,4 @@ DLL file is a wrapped .NET side.
 
 
 3) Using
+</pre>
