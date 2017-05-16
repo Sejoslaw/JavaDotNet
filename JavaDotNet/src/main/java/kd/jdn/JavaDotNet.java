@@ -21,19 +21,36 @@ public class JavaDotNet
 	/**
 	 * JDN internal Logger.
 	 */
-	public final Logger logger = Logger.getLogger("JKDL");
+	public final Logger logger = Logger.getLogger("JDN");
 	/**
 	 * Main folder which contains all basic .NET libraries
 	 */
-	public String dotNetDir = "C:/Windows/Microsoft.NET/Framework/v4.0.30319";
+	public final String dotNetDir = "C:/Windows/Microsoft.NET/Framework/v4.0.30319/";
 	/**
 	 * Extension of the DLL file.
 	 */
-	public String dllExt = ".dll";
+	public final String dllExt = ".dll";
 	
 	private JavaDotNet() 
 	{
-		System.loadLibrary("JavaDotNet.NET");
+		try
+		{
+			System.loadLibrary("JavaDotNet.NET");
+		}
+		catch(Exception e)
+		{
+			log(Level.WARNING, "Error while loading JavaDotNet.NET library.");
+		}
+	}
+	
+	/**
+	 * This will load .NET internal library from the folder: C:/Windows/Microsoft.NET/Framework/v4.0.30319/
+	 * 
+	 * @param libraryName Name of the library. For instance: System.Windows.Forms
+	 */
+	public void loadDotNetInternalLibrary(String libraryName)
+	{
+		System.load(dotNetDir + libraryName + dllExt);
 	}
 	
 	/**
@@ -47,10 +64,12 @@ public class JavaDotNet
 	{
 		/**
 		 * Arguments: 
-		 * JavaDotNet command id, 
+		 * JDN command id, 
 		 * "assemblyNameOrPath" - name of the assembly which should be added
 		 */
-		String[] dotNetAnswer = communicateDotNet(new String[] { String.valueOf(JDNCommand.ADD_NEW_REFERENCE), assemblyNameOrPath });
+		String[] dotNetAnswer = JDNConversion.readAnswer(communicateDotNet(
+				String.valueOf(JDNCommand.ADD_NEW_REFERENCE) + JDNConversion.SPACE + 
+				assemblyNameOrPath));
 		return new JDNAssembly(dotNetAnswer);
 	}
 	
@@ -67,7 +86,8 @@ public class JavaDotNet
 		 * Arguments:
 		 * JDN command id
 		 */
-		String[] dotNetAnswer = communicateDotNet(new String[] { String.valueOf(JDNCommand.NEW_OBJECT) });
+		String[] dotNetAnswer = JDNConversion.readAnswer(communicateDotNet(
+				String.valueOf(JDNCommand.NEW_OBJECT)));
 		return new JDNObject(dotNetAnswer);
 	}
 	
@@ -83,10 +103,12 @@ public class JavaDotNet
 	{
 		/**
 		 * Arguments:
-		 * JavaDotNet command id
+		 * JDN command id
 		 * parameters - converted parameters
 		 */
-		String[] dotNetAnswer = communicateDotNet(new String[] { String.valueOf(JDNCommand.NEW_OBJECT), JDNUtils.parseParameters(parameters) });
+		String[] dotNetAnswer = JDNConversion.readAnswer(communicateDotNet(
+				String.valueOf(JDNCommand.NEW_OBJECT) + JDNConversion.SPACE + 
+				JDNConversion.parseParameters(parameters)));
         return new JDNObject(dotNetAnswer);
 	}
 	
@@ -103,7 +125,8 @@ public class JavaDotNet
 		 * Arguments:
 		 * JDN command id
 		 */
-		String[] dotNetAnswer = communicateDotNet(new String[] { String.valueOf(JDNCommand.GET_TYPE) });
+		String[] dotNetAnswer = JDNConversion.readAnswer(communicateDotNet(
+				String.valueOf(JDNCommand.GET_TYPE)));
         return new JDNType(dotNetAnswer);
 	}
 	
@@ -121,12 +144,18 @@ public class JavaDotNet
 	{
 		/**
 		 * Arguments:
+		 * JDN command id
 		 * .NET Type name
 		 * Object id
 		 * .NET method name
 		 * .NET arguments
 		 */
-		String[] answer = communicateDotNet(new String[] { String.valueOf(JDNCommand.INVOKE), typeName, String.valueOf(objectId), methodName, JDNUtils.parseParameters(parameters) });
+		String[] answer = JDNConversion.readAnswer(communicateDotNet(
+				String.valueOf(JDNCommand.INVOKE) + JDNConversion.SPACE + 
+				typeName + JDNConversion.SPACE + 
+				String.valueOf(objectId) + JDNConversion.SPACE + 
+				methodName + JDNConversion.SPACE + 
+				JDNConversion.parseParameters(parameters)));
 		return new JDNObject(answer);
 	}
 	
@@ -140,10 +169,14 @@ public class JavaDotNet
 	{
 		/**
 		 * Arguments:
+		 * JDN command id
 		 * .NET field name
 		 * Object id
 		 */
-		String[] answer = communicateDotNet(new String[] { String.valueOf(JDNCommand.GET_FIELD_VALUE), fieldName, String.valueOf(objectId) });
+		String[] answer = JDNConversion.readAnswer(communicateDotNet(
+				String.valueOf(JDNCommand.GET_FIELD_VALUE) + JDNConversion.SPACE + 
+				fieldName + JDNConversion.SPACE + 
+				String.valueOf(objectId)));
 		return new JDNObject(answer);
 	}
 	
@@ -156,7 +189,18 @@ public class JavaDotNet
 	 */
 	public void setFieldValue(String fieldName, Object newValue, int objectId)
 	{
-		communicateDotNet(new String[] { String.valueOf(JDNCommand.SET_FIELD_VALUE), fieldName, String.valueOf(objectId), JDNUtils.parseParameters(new Object[] { newValue }) });
+		/**
+		 * Arguments:
+		 * JDN command id
+		 * .NET field name
+		 * .NET object id
+		 * .NET parameters
+		 */
+		JDNConversion.readAnswer(communicateDotNet(
+				String.valueOf(JDNCommand.SET_FIELD_VALUE) + JDNConversion.SPACE + 
+				fieldName + JDNConversion.SPACE + 
+				String.valueOf(objectId) + JDNConversion.SPACE + 
+				JDNConversion.parseParameters(new Object[] { newValue })));
 	}
 	
 	/**
@@ -174,5 +218,5 @@ public class JavaDotNet
 	 * 
 	 * @return Returns the .NET answer.
 	 */
-	public native String[] communicateDotNet(String[] args);
+	public native String communicateDotNet(String args);
 }
