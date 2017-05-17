@@ -2,9 +2,3 @@
 .metadata
 .recommenders
 RemoteSystemsTempFiles
-
-# CodeBlocks and C++ Stuff
-*.layout
-*.depend
-JavaDotNet.NET/bin/
-JavaDotNet.NET/obj/
