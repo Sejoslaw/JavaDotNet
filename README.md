@@ -55,6 +55,7 @@
 	JavaDotNet.NET.dll library. Either by using full path to file or by
 	copying file into "C:/Windows/Microsoft.NET/Framework/v4.0.30319" and
 	loading it by name "JavaDotNet.NET".
-	
+
+
 Author: Krzysztof Dobrzynski - k.dobrzynski94@gmail.com - https://github.com/Sejoslaw
 </pre>
