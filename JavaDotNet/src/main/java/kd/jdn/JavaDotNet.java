@@ -33,14 +33,14 @@ public class JavaDotNet
 	
 	private JavaDotNet() 
 	{
-		try
-		{
-			System.loadLibrary("JavaDotNet.NET");
-		}
-		catch(Exception e)
-		{
-			log(Level.WARNING, "Error while loading JavaDotNet.NET library.");
-		}
+//		try
+//		{
+//			System.loadLibrary("JavaDotNet.NET");
+//		}
+//		catch(Exception e)
+//		{
+//			log(Level.WARNING, "Error while loading JavaDotNet.NET library.");
+//		}
 	}
 	
 	/**
@@ -51,6 +51,16 @@ public class JavaDotNet
 	public void loadDotNetInternalLibrary(String libraryName)
 	{
 		System.load(dotNetDir + libraryName + dllExt);
+	}
+	
+	/**
+	 * Load library from given path.
+	 * 
+	 * @param fullPath Full path to the library.
+	 */
+	public void loadLibrary(String fullPath)
+	{
+		System.load(fullPath);
 	}
 	
 	/**

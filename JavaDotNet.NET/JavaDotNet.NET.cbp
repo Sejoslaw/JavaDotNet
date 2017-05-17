@@ -6,37 +6,74 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="Debug">
-				<Option output="bin/Debug/JavaDotNet" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+			<Target title="Debug-x86">
+				<Option output="bin/Debug/x86/JavaDotNet.NET" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/x86/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="-Wall" />
-					<Add option="-DBUILD_DLL" />
+					<Add option="-m32" />
 					<Add option="-g" />
+					<Add option="-DBUILD_DLL" />
 				</Compiler>
 				<Linker>
-					<Add library="user32" />
+					<Add option="-m32" />
 				</Linker>
 			</Target>
-			<Target title="Release">
-				<Option output="bin/Release/JavaDotNet" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+			<Target title="Debug-x86_64">
+				<Option output="bin/Debug/x86_64/JavaDotNet.NET" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/x86_64/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="-Wall" />
+					<Add option="-m64" />
+					<Add option="-g" />
 					<Add option="-DBUILD_DLL" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+				</Linker>
+			</Target>
+			<Target title="Release-x86">
+				<Option output="bin/Release/x86/JavaDotNet" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/x86/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
 					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-m32" />
+					<Add option="-DBUILD_DLL" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="user32" />
+					<Add option="-m32" />
+				</Linker>
+			</Target>
+			<Target title="Release-x86_64">
+				<Option output="bin/Release/x86_64/JavaDotNet" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/x86_64/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-m64" />
+					<Add option="-DBUILD_DLL" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-m64" />
 				</Linker>
 			</Target>
 		</Build>

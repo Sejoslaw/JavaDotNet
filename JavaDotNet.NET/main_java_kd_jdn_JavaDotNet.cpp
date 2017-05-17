@@ -10,7 +10,13 @@
 /// JDN generated header file
 #include "main_java_kd_jdn_JavaDotNet.h"
 
-///Few internal variables
+/// JDNCommands - look in JDNCommand.java for more info
+#define COMMAND_ADD_NEW_REFERENCE 1
+#define COMMAND_NEW_OBJECT 2
+#define COMMAND_GET_TYPE 3
+#define COMMAND_INVOKE 4
+#define COMMAND_GET_FIELD_VALUE 5
+#define COMMAND_SET_FIELD_VALUE 6
 
 /// Represents a space between JDN arguments - see JDNConversion.java
 #define ARGS_SPACE ";!;!;"
@@ -23,4 +29,6 @@
 JNIEXPORT jstring JNICALL Java_main_java_kd_jdn_JavaDotNet_communicateDotNet
     (JNIEnv *env, jobject object, jstring args)
 {
+    /// string representation of the full JDN command
+    const char* string_rep = env->GetStringUTFChars(args, NULL);
 }
