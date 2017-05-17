@@ -33,14 +33,8 @@ public class JavaDotNet
 	
 	private JavaDotNet() 
 	{
-//		try
-//		{
-//			System.loadLibrary("JavaDotNet.NET");
-//		}
-//		catch(Exception e)
-//		{
-//			log(Level.WARNING, "Error while loading JavaDotNet.NET library.");
-//		}
+		// Print nice start message
+		log(Level.INFO, "Starting JavaDotNet by Krzysztof Dobrzynski...");
 	}
 	
 	/**

@@ -11,7 +11,7 @@ public class HardCodedTest
 {
 	public static void main(String[] args)
 	{
-		String path = "C:/Users/Krzysztof/git/JavaDotNet/JavaDotNet.VS/JavaDotNet.NET/x64/Debug/JavaDotNet.NET.dll";
+		String path = "C:/Users/Krzysztof/git/JavaDotNet/JavaDotNet.NET/x64/Debug/JavaDotNet.NET.dll";
 		// Hard coded loading library
 		JavaDotNet.INSTANCE.loadLibrary(path);
 		// It prints answer from .NET
