@@ -2,7 +2,7 @@
 			..:: JavaDotNet Specification ::..
 
 1) General info.
-	JavaDotNet works similar to JavOnet but the code is written by me ( Krzysztof Dobrzyñski ).
+	JavaDotNet works similar to JavOnet but the code is written by me.
 	JDNObject is a wrapped .NET Object with unique identifier for each .NET Object.
 
 	Conversion works like so:
@@ -55,4 +55,6 @@
 	JavaDotNet.NET.dll library. Either by using full path to file or by
 	copying file into "C:/Windows/Microsoft.NET/Framework/v4.0.30319" and
 	loading it by name "JavaDotNet.NET".
+	
+Author: Krzysztof Dobrzynski - k.dobrzynski94@gmail.com - https://github.com/Sejoslaw
 </pre>
