@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JavaDotNet.Bridge", "JavaDotNet.NET\JavaDotNet.NET.vcxproj", "{D06B175C-35D0-4876-9C5A-3F46E24E03B3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JavaDotNet.Bridge", "JavaDotNet.Bridge\JavaDotNet.Bridge.vcxproj", "{D06B175C-35D0-4876-9C5A-3F46E24E03B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JDN.NET", "JDN.NET\JDN.NET.csproj", "{BC8FE229-BE23-4DDA-BB05-18C28CE7BA46}"
 EndProject
