@@ -11,11 +11,11 @@ using namespace System::Security::Permissions;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly:AssemblyTitleAttribute("JavaDotNet.NET")];
+[assembly:AssemblyTitleAttribute("JavaDotNet")];
 [assembly:AssemblyDescriptionAttribute("")];
 [assembly:AssemblyConfigurationAttribute("")];
 [assembly:AssemblyCompanyAttribute("")];
-[assembly:AssemblyProductAttribute("JavaDotNet.NET")];
+[assembly:AssemblyProductAttribute("JavaDotNet")];
 [assembly:AssemblyCopyrightAttribute("Copyright (c) Krzysztof Dobrzynski 2017")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];
