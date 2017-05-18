@@ -5,7 +5,7 @@ package main.java.kd.jdn;
  * 
  * @author <a href="mailto:k.dobrzynski94@gmail.com">Krzysztof Dobrzyñski</a> -> https://github.com/Sejoslaw
  */
-public class JDNObject 
+public class JDNObject
 {
 	/**
 	 * Unique identifier of this object.

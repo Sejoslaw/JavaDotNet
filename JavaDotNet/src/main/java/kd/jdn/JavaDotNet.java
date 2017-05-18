@@ -130,7 +130,8 @@ public class JavaDotNet
 		 * JDN command id
 		 */
 		String[] dotNetAnswer = JDNConversion.readAnswer(communicateDotNet(
-				String.valueOf(JDNCommand.GET_TYPE)));
+				String.valueOf(JDNCommand.GET_TYPE) + JDNConversion.SPACE + 
+				typeName));
         return new JDNType(dotNetAnswer);
 	}
 	

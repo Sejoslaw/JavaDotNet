@@ -18,10 +18,11 @@
 
 2) Architecture
 	Java <-> C++ <-> .NET / C#
-	JavaDotNet.jar <-> JavaDotNet.dll
+	JavaDotNet.jar <-> JavaDotNet.Bridge.dll <-> JDN.NET.dll
 	JAR file is a bridge which should be added as a library to Java project.
 	Use Java commands to connect with .NET JavaDotNet DLL library.
-	JavaDotnet.NET.dll is a library which connects C++ and .NET environment.
+	JavaDotnet.Bridge.dll is a library which connects Java and C++.
+	JDN.NET.dll is a .NET library which is used by C++ side.
 
 
 3) Help
@@ -35,7 +36,7 @@
 
 
 4) Conversion
-	Java type <=> String representation
+	Type <=> String representation
 	byte x = 32; <=> "Byte:32"
 	short x =32 <=> "Short:32"
 	int x = 32; <=> "Int:32"
@@ -52,9 +53,10 @@
 
 5) Using
 	First thing which You must do when writing Java program is to load
-	JavaDotNet.NET.dll library. Either by using full path to file or by
-	copying file into "C:/Windows/Microsoft.NET/Framework/v4.0.30319" and
-	loading it by name "JavaDotNet.NET".
+	JavaDotNet.Bridge.dll library. Either by using full path to file or by
+	copying DLL files ("JavaDotNet.Bridge.dll" and "JDN.NET.dll") 
+	into "C:/Windows/Microsoft.NET/Framework/v4.0.30319" and
+	loading it by name "JavaDotNet.Bridge".
 
 
 Author: Krzysztof Dobrzynski - k.dobrzynski94@gmail.com - https://github.com/Sejoslaw

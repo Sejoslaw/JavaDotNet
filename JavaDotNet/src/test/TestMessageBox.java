@@ -11,8 +11,8 @@ public class TestMessageBox
 {
 	public static void main(String[] args)
 	{
-		// This will try to load .NET internal library.
-		JavaDotNet.INSTANCE.loadDotNetInternalLibrary("System.Windows.Forms");
+		// Load library from hard coded path
+		JavaDotNet.INSTANCE.loadLibrary(HardCodedTest.PATH);
 		// Add reference to required assembly
 		JavaDotNet.INSTANCE.addReference("System.Windows.Forms");
 		// Invoke Show method from MessageBox class
